@@ -7,7 +7,7 @@ import openfl.display.Sprite;
  */
 
 interface ISequence{
-	public function Proceed():SequenceName;
+	public function proceed():SequenceName;
 	
-	public function Release() : Void;
+	public function release() : Void;
 }

@@ -42,7 +42,9 @@ class KeyInput{
 		}
 	}
 	
-	function _UpdateState(e) {
+	//	ここまでイベントリスナ
+		
+	public function update():Void {
 		var t = (_stateCode + 1) % 2;
 		
 		_keyState[t] = _keyState[_stateCode].slice();
@@ -51,8 +53,6 @@ class KeyInput{
 		
 	}
 	
-	//	ここまでイベントリスナ
-		
 	inline function new() {
 	
 		_keyState = new Vector(2,true);
@@ -77,12 +77,6 @@ class KeyInput{
 		//	画面フォーカスが失われた時にキー入力情報リセット
 		Lib.current.stage.addEventListener(Event.DEACTIVATE, _DeActivate,false,0,true);
 
-		#if !flash
-		//	毎フレーム処理の実行直前にキー情報更新
-		Lib.current.stage.addEventListener(Event.ENTER_FRAME, _UpdateState, false, -1, true);
-		#else
-		Lib.current.stage.addEventListener(Event.EXIT_FRAME, _UpdateState, false, 0, true);
-		#end
 	}
 	
 	public inline function isPushKey(KeyCode:UInt):Bool {

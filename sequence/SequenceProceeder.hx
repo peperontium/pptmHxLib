@@ -1,6 +1,7 @@
 package sequence ;
 
 import openfl.display.Sprite;
+import input.KeyInput;
 
 /**
  * ...
@@ -18,8 +19,11 @@ class SequenceProceeder {
 		_currentSequence = new GameMain();
 	}
 	
-	public function Proceed() {
-		switch(_nowSequence.Proceed()) {
+	public function proceed() {
+		
+		KeyInput.get.update();
+		
+		switch(_currentSequence.proceed()) {
 			case SequenceName.GAMEMAIN:
 				_currentSequence.release(_mainScreen);
 //				_currentSequence = new GameMain();
