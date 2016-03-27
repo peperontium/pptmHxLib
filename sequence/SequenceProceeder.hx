@@ -12,27 +12,26 @@ class SequenceProceeder {
 
 	private var _currentSequence: ISequence;
 	private var _mainScreen : Sprite;
-//	public var _sharedData	: SequenceSharedData;
 
 	public function new(display:Sprite) {
 		_mainScreen = display;
-		_currentSequence = new GameMain();
+//		_currentSequence = new Title();
 	}
 	
 	public function proceed() {
 		
+		_mainScreen.graphics.clear();
 		KeyInput.get.update();
 		
-		switch(_currentSequence.proceed()) {
-			case SequenceName.GAMEMAIN:
-				_currentSequence.release(_mainScreen);
-//				_currentSequence = new GameMain();
-			
+		var nextSeq = _currentSequence.proceed();
+		_currentSequence.render(_mainScreen);
+		
+		switch(nextSeq) {
 			case SequenceName.CONTINUE:
 				null;
 				
 			case SequenceName.END:
-			#if (!flash)
+			#if (system)
 			Sys.exit(0);
 			#end
 		};

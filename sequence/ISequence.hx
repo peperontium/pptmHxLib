@@ -8,6 +8,5 @@ import openfl.display.Sprite;
 
 interface ISequence{
 	public function proceed():SequenceName;
-	
-	public function release() : Void;
+	public function render(screen:Sprite):Void;
 }

@@ -32,12 +32,19 @@ class SoundPlayer{
 		_pausePosition	= -1;
 	}
 	
-	//	BGMの音量設定
+	/**
+	* 音量設定
+	* @param volume	音量、0.0~1.0の間で設定
+	*/
 	public inline function setVolume(volume:Float = 1.0) :Void {
 		if(_nowPlayBGM != null)
 			_nowPlayBGM.soundTransform = new SoundTransform(volume, 0);
 	}
 	
+	/**
+	* ループ再生
+	* @param bgm 流すBGMのファイル名
+	*/
 	public inline function playBGM(bgm:String):Void{
 		if (_nowPlayBGM != null)
 			_nowPlayBGM.stop();
@@ -47,7 +54,7 @@ class SoundPlayer{
 		_nowPlayBGMName = bgm;
 	}
 	
-	//	BGM一時停止
+	///	一時停止
 	public inline function pauseBGM():Void{
 		if (_nowPlayBGM != null) {
 			_pausePosition = _nowPlayBGM.position;
@@ -56,14 +63,15 @@ class SoundPlayer{
 		}
 	}
 
-	//	BGM一時停止解除
+	///	一時停止解除
 	public inline function restartBGM():Void {
-		if (_nowPlayBGMName != null && _pausePosition < 0) {
+		if (_nowPlayBGMName != null && _pausePosition > 0) {
 			_nowPlayBGM = Assets.getSound(_nowPlayBGMName).play(_pausePosition, BGM_LOOP_MAX);
 			_pausePosition = -1;
 		}
 	}
 	
+	///	非ループで再生
 	public inline function playSE(se:String, volume:Float = 1.0):Void{
 		var se = Assets.getSound(se).play();
 		se.soundTransform = new SoundTransform(volume, 0);

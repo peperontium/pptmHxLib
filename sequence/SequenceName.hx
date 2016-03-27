@@ -6,6 +6,5 @@ package sequence ;
 
 enum SequenceName {
 	CONTINUE;
-	GAMEMAIN;
 	END;
 }
